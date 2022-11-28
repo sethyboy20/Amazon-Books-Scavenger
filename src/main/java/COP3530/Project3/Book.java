@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package COP3530.Project3;
+package COP3530.project3;
 import java.util.*;
 
 /**
@@ -21,7 +21,7 @@ public class Book {
         String fullText;
     }
     
-    private double bookID;
+    private String bookID;
     private String title;
     private String desc;
     private double price;
@@ -36,8 +36,10 @@ public class Book {
     private ArrayList<Review> reviews = new ArrayList<>();
     
     public Book() {
+        this.bookID = "";
         this.title = "";
         this.desc = "";
+        this.price = 0;
         this.image = "";
         this.previewLink = "";
         this.publisher = "";
@@ -46,11 +48,11 @@ public class Book {
         this.ratingsCount = 0;
     }
     
-    public void setBookID(double bookID) {
+    public void setBookID(String bookID) {
         this.bookID = bookID;
     }
     
-    public double getBookID(double bookID) {
+    public String getBookID() {
         return bookID;
     }
     
@@ -74,7 +76,7 @@ public class Book {
         this.price = price;
     }
     
-    public double getPrice(double price) {
+    public double getPrice() {
         return price;
     }
     

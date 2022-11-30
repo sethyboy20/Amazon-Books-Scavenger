@@ -3,13 +3,17 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package COP3530.project3;
+package COP3530.Project3;
+import org.springframework.stereotype.Component;
+
 import java.util.*;
 
 /**
  *
  * @author Mr.Waddle
  */
+
+@Component
 public class Book {
     private class Review {
         String userID;

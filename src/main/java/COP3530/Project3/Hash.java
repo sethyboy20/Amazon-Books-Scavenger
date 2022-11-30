@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package COP3530.project3;
+package COP3530.Project3;
 import java.util.*;
 import java.io.*;
 
@@ -29,7 +29,7 @@ public class Hash {
                StringBuilder line = new StringBuilder(str); 
                Book newBook = new Book();
                
-               // Read title
+               // Read amountFound
                String title = parseLine(line);
                newBook.setTitle(title);
 

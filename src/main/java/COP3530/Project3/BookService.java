@@ -6,6 +6,7 @@ import org.springframework.stereotype.Service;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
+import java.util.Locale;
 
 @Service
 public class BookService {
@@ -37,6 +38,6 @@ public class BookService {
     }
 
     public List<Book> findBooksByTitle(String search) {
-        return book.stream().filter(c->c.getTitle().contains(search)).collect(Collectors.toList());
+        return book.stream().filter(c->c.getTitle().toLowerCase(Locale.US).contains(search.toLowerCase(Locale.US))).collect(Collectors.toList());
     }
 }

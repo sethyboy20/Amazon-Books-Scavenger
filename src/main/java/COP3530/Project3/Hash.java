@@ -10,7 +10,7 @@ import java.io.*;
 public class Hash {
     HashMap<String, Book> books = new HashMap<>();
 
-    public void read(String[] args) throws Exception {
+    public void read() throws Exception {
         // TODO code application logic here
         
         try {
@@ -110,6 +110,7 @@ public class Hash {
             }
             fr.close();
 
+            /*
             // Open ratings/reviews file
             file = new File("Books_rating.csv");
             fr = new FileReader(file);
@@ -149,7 +150,7 @@ public class Hash {
                 books.get(title).addReview(userID, profileName, helpfulness, score, time,
                                         summary, fullText);
             }
-            fr.close();
+            fr.close();*/
          }
          catch (Exception e) { 
              System.out.println("File read error"); 

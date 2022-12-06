@@ -395,12 +395,6 @@ public class BPTree {
             }
         }
 
-        for (int i = 0; i < similar.size(); i++)
-        {
-            System.out.print("Book Num: " + i + " ");
-            System.out.println(similar.get(i));
-        }
-        
         return results;
     }
 
@@ -434,11 +428,6 @@ public class BPTree {
             }
         }
 
-        for (int i = 0; i < similar.size(); i++)
-        {
-            System.out.print("Book Num: " + i + " ");
-            System.out.println(similar.get(i));
-        }
         return results;
     }
 
@@ -469,12 +458,6 @@ public class BPTree {
                     builder.deleteCharAt(builder.length()-1);
                 }
             }
-        }
-
-        for (int i = 0; i < similar.size(); i++)
-        {
-            System.out.print("Book Num: " + i + " ");
-            System.out.println(similar.get(i));
         }
         return results;
     }
@@ -511,12 +494,6 @@ public class BPTree {
             }
         }
 
-        for (int i = 0; i < similar.size(); i++)
-        {
-            System.out.print("Book Num: " + i + " ");
-            System.out.println(similar.get(i));
-        }
-        
         return results;
     }
 
@@ -549,11 +526,6 @@ public class BPTree {
             }
         }
 
-        for (int i = 0; i < similar.size(); i++)
-        {
-            System.out.print("Book Num: " + i + " ");
-            System.out.println(similar.get(i));
-        }
         return results;
     }
 
@@ -586,11 +558,6 @@ public class BPTree {
             }
         }
 
-        for (int i = 0; i < similar.size(); i++)
-        {
-            System.out.print("Book Num: " + i + " ");
-            System.out.println(similar.get(i));
-        }
         return results;
     }
 
@@ -623,11 +590,6 @@ public class BPTree {
             }
         }
 
-        for (int i = 0; i < similar.size(); i++)
-        {
-            System.out.print("Book Num: " + i + " ");
-            System.out.println(similar.get(i));
-        }
         return results;
     }
 
@@ -658,12 +620,6 @@ public class BPTree {
                     builder.deleteCharAt(builder.length()-1);
                 }
             }
-        }
-
-        for (int i = 0; i < similar.size(); i++)
-        {
-            System.out.print("Book Num: " + i + " ");
-            System.out.println(similar.get(i));
         }
         return results;
     }
@@ -700,11 +656,6 @@ public class BPTree {
             }
         }
 
-        for (int i = 0; i < similar.size(); i++)
-        {
-            System.out.print("Book Num: " + i + " ");
-            System.out.println(similar.get(i));
-        }
         return results;
     }
 
@@ -724,13 +675,6 @@ public class BPTree {
                 continue;
             }
         }
-
-        for (int i = 0; i < similar.size(); i++)
-        {
-            System.out.print("Book Num: " + i + " ");
-            System.out.println(similar.get(i));
-        }
-        
         return results;
     }
 

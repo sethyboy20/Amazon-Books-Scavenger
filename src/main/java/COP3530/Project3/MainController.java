@@ -37,21 +37,23 @@ public class MainController {
     }
 
     @GetMapping("/search")
-    public String searchResults(Model model, @RequestParam Optional<String> search, @RequestParam Optional<String> sortType, @RequestParam Optional<String> struc,
-                                @RequestParam Optional<String> sortOrder, @RequestParam Optional<Integer> index) {
+    public String searchResults(Model model, @RequestParam Optional<String> search, @RequestParam String sortType, @RequestParam String struc,
+                                @RequestParam String sortOrder, @RequestParam Optional<Integer> index) {
         int indexInt = index.orElse(0);
         if (search.isPresent()) {
+	    String searchString = search.get();
             addMemoryUsage(model);
             long origTime = System.currentTimeMillis();
-            boolean asc = sortOrder.get().equals("ascending");
+            boolean asc = sortOrder.equals("ascending");
+	    logger.error("asc="+sortOrder);
             model.addAttribute("isSearching", true);
             List<Book> resultsFound;
-            if (sortType.get().equals("title")) {
-                resultsFound = bookService.findBooksByTitle(search.get(), struc.get(), sortType.get(), asc);
-            } else if (sortType.get().equals("desc")) {
-                 resultsFound = bookService.findBooksByDesc(search.get(), struc.get(), sortType.get(), asc);
-            } else if (sortType.get().equals("author")) {
-                resultsFound = bookService.findBooksByAuthor(search.get(), struc.get(), sortType.get(), asc);
+            if (sortType.equals("title")) {
+                resultsFound = bookService.findBooksByTitle(searchString, struc, sortType, asc);
+            } else if (sortType.equals("desc")) {
+                 resultsFound = bookService.findBooksByDesc(searchString, struc, sortType, asc);
+            } else if (sortType.equals("author")) {
+                resultsFound = bookService.findBooksByAuthor(searchString, struc, sortType, asc);
             } else {
                 throw new AssertionError("Wrong search by");
             }
@@ -59,15 +61,18 @@ public class MainController {
 
             model.addAttribute("amountResults", 0);
             long curTime = System.currentTimeMillis();
-            model.addAttribute("searchFor", search.get());
+            model.addAttribute("searchFor", searchString);
             model.addAttribute("amountFound", resultsFound.size());
             model.addAttribute("booksFound", booksFound);
             model.addAttribute("timeSpent", curTime - origTime);
-            model.addAttribute("bPlus", struc.get().equals("bTree"));
+            model.addAttribute("struc", struc);
+            model.addAttribute("sortOrder", sortOrder);
+            model.addAttribute("sortType", sortType);
+            model.addAttribute("bPlus", struc.equals("bTree"));
             model.addAttribute("asc", asc);
-            model.addAttribute("searchByTitle", sortType.get().equals("title"));
-            model.addAttribute("searchByDesc", sortType.get().equals("desc"));
-            model.addAttribute("searchByAuthor", sortType.get().equals("author"));
+            model.addAttribute("searchByTitle", sortType.equals("title"));
+            model.addAttribute("searchByDesc", sortType.equals("desc"));
+            model.addAttribute("searchByAuthor", sortType.equals("author"));
             model.addAttribute("resultsFrom", indexInt * resultsPerPage + 1);
             model.addAttribute("resultsTo", (indexInt) * resultsPerPage + booksFound.size());
             model.addAttribute("prevIndex", indexInt - 1);

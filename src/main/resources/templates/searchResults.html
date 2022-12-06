@@ -19,22 +19,36 @@
                 <input name="search" th:attr="value=${searchFor}"/>
             </label> <br/>
             <button>Search</button>
+            <br/>
+            <div class="card" style="width: 18rem; padding: 8px; text-align: left;" >
+                <p class="card-text">
 
+                <input type="radio" id="bTree" name="struc" value="bTree" th:attr="checked=${bPlus}">
+                <label for="bTree">B+ Tree</label><br>
+                <input type="radio" id="hashMap" name="struc" value="hash" th:attr="checked=!${bPlus}">
+                <label for="hashMap">Hash Map</label><br>
+                </p>
+            </div>
+            <div class="card" style="width: 18rem; padding: 8px; text-align: left;" >
+                <p class="card-text">
 
-            <input type="radio" id="bTree" name="struc" value="bTree" th:attr="checked=${bPlus}">
-            <label for="bTree">B+ Tree</label><br>
-            <input type="radio" id="hashMap" name="struc" value="hash" th:attr="checked=!${bPlus}">
-            <label for="hashMap">Hash Map</label><br>
-            <input type="radio" id="asc" name="sortOrder" value="ascending" th:attr="checked=${asc}">
-            <label for="asc">Ascending</label><br>
-            <input type="radio" id="des" name="sortOrder" value="!ascending" th:attr="checked=!${asc}">
-            <label for="des">Descending</label><br>
-            <input type="radio" id="title" name="sortType" value="title" th:attr="checked=${searchByTitle}">
-            <label for="title">Title</label><br>
-            <input type="radio" id="desc" name="sortType" value="desc" th:attr="checked=${searchByDesc}">
-            <label for="desc">Description</label><br>
-            <input type="radio" id="author" name="sortType" value="author" th:attr="checked=${searchByAuthor}">
-            <label for="author">Author</label><br>
+                <input type="radio" id="asc" name="sortOrder" value="ascending" th:attr="checked=${asc}">
+                <label for="asc">Ascending</label><br>
+                <input type="radio" id="des" name="sortOrder" value="des" th:attr="checked=!${asc}">
+                <label for="des">Descending</label><br>
+                </p>
+            </div>
+            <div class="card" style="width: 18rem; padding: 8px; text-align: left;" >
+                <p class="card-text">
+
+                <input type="radio" id="title" name="sortType" value="title" th:attr="checked=${searchByTitle}">
+                <label for="title">Title</label><br>
+                <input type="radio" id="desc" name="sortType" value="desc" th:attr="checked=${searchByDesc}">
+                <label for="desc">Description</label><br>
+                <input type="radio" id="author" name="sortType" value="author" th:attr="checked=${searchByAuthor}">
+                <label for="author">Author</label><br>
+                </p>
+            </div>
 
         </form>
     </div>
@@ -50,6 +64,11 @@
         <div class="card" style="width: 18rem;">
             <div class="card-body">
                 <h5 class="card-title"><span th:text="${str.Title}"></span></h5>
+    		<div th:each="author, j : ${str.Authors}">
+		        <div class="card" style="width: 12rem;">
+			<h5 class="card-title"><span th:text="${author}"></span></h5>
+			</div>
+		</div>
                 <p class="card-text"><span th:text="${str.desc}"></span></p>
                 <a href="#" class="btn btn-primary">Go somewhere</a>
             </div>
@@ -58,10 +77,10 @@
     </div>
 
     <span th:if="${prevIndex >= 0}">
-        <a th:attr="href='/search?search='+${searchFor}+'&index='+${prevIndex}">Previous</a>
+	    <a th:attr="href='/search?search='+${searchFor}+'&index='+${prevIndex}+'&struc='+${struc}+'&sortOrder='+${sortOrder}+'&sortType='+${sortType}">Previous</a>
     </span>
     <span th:if="${nextIndex >= 0}">
-        <a th:attr="href='/search?search='+${searchFor}+'&index='+${nextIndex}">Next</a>
+        <a th:attr="href='/search?search='+${searchFor}+'&index='+${nextIndex}+'&struc='+${struc}+'&sortOrder='+${sortOrder}+'&sortType='+${sortType}">Next</a>
     </span>
 </div>
 </body>

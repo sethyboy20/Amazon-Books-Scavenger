@@ -1,7 +1,7 @@
 package COP3530.Project3;
 import java.util.Map.Entry;
 import java.util.*;
-
+import java.util.Locale;
 
 public class BPTree {
 
@@ -382,7 +382,7 @@ public class BPTree {
             }
             StringBuilder builder = new StringBuilder(text);
             for (int j = 0;  j < text.length()/2 || text.length() == 1;j++) {
-                if (bookAll.get(i).getTitle().contains(builder)) {
+                if (bookAll.get(i).getTitle().toLowerCase(Locale.US).contains(builder.toString().toLowerCase(Locale.US))) {
                     if (similar.contains(bookAll.get(i).toString()))
                     {
                         continue;
@@ -415,7 +415,7 @@ public class BPTree {
             }
             StringBuilder builder = new StringBuilder(text);
             for (int j = 0;  j < text.length()/2 || text.length() == 1;j++) {
-                if (bookAll.get(i).getDesc().contains(builder)) {
+                if (bookAll.get(i).getDesc().toLowerCase(Locale.US).contains(builder.toString().toLowerCase(Locale.US))) {
                     if (similar.contains(bookAll.get(i).toString()))
                     {
                         continue;
@@ -447,7 +447,7 @@ public class BPTree {
             }
             StringBuilder builder = new StringBuilder(text);
             for (int j = 0;  j < text.length()/2 || text.length() == 1;j++) {
-                if (bookAll.get(i).getPrevLink().contains(builder)) {
+                if (bookAll.get(i).getPrevLink().toLowerCase(Locale.US).contains(builder.toString().toLowerCase(Locale.US))) {
                     if (similar.contains(bookAll.get(i).toString()))
                     {
                         continue;
@@ -480,7 +480,7 @@ public class BPTree {
             for (int a = 0; a < bookAll.get(i).getAuthors().size();a++) {
                 StringBuilder builder = new StringBuilder(text);
                 for (int j = 0;  j < text.length()/2 || text.length() == 1; j++) {
-                    if (bookAll.get(i).getAuthors().get(a).contains(builder)) {
+                    if (bookAll.get(i).getAuthors().get(a).toLowerCase(Locale.US).contains(builder.toString().toLowerCase(Locale.US))) {
                         if (similar.contains(bookAll.get(i).toString()))
                         {
                             continue;
@@ -513,7 +513,7 @@ public class BPTree {
             }
             StringBuilder builder = new StringBuilder(text);
             for (int j = 0;  j < text.length()/2 || text.length() == 1;j++) {
-                if (bookAll.get(i).getImage().contains(builder)) {
+                if (bookAll.get(i).getImage().toLowerCase(Locale.US).contains(builder.toString().toLowerCase(Locale.US))) {
                     if (similar.contains(bookAll.get(i).toString()))
                     {
                         continue;
@@ -545,7 +545,7 @@ public class BPTree {
             }
             StringBuilder builder = new StringBuilder(text);
             for (int j = 0;  j < text.length()/2 || text.length() == 1;j++) {
-                if (bookAll.get(i).getPubDate().contains(builder)) {
+                if (bookAll.get(i).getPubDate().toLowerCase(Locale.US).contains(builder.toString().toLowerCase(Locale.US))) {
                     if (similar.contains(bookAll.get(i).toString()))
                     {
                         continue;
@@ -577,7 +577,7 @@ public class BPTree {
             }
             StringBuilder builder = new StringBuilder(text);
             for (int j = 0;  j < text.length()/2 || text.length() == 1;j++) {
-                if (bookAll.get(i).getPub().contains(builder)) {
+                if (bookAll.get(i).getPub().toLowerCase(Locale.US).contains(builder.toString().toLowerCase(Locale.US))) {
                     if (similar.contains(bookAll.get(i).toString()))
                     {
                         continue;
@@ -609,7 +609,7 @@ public class BPTree {
             }
             StringBuilder builder = new StringBuilder(text);
             for (int j = 0;  j < text.length()/2 || text.length() == 1;j++) {
-                if (bookAll.get(i).getInfoLink().contains(builder)) {
+                if (bookAll.get(i).getInfoLink().toLowerCase(Locale.US).contains(builder.toString().toLowerCase(Locale.US))) {
                     if (similar.contains(bookAll.get(i).toString()))
                     {
                         continue;
@@ -642,7 +642,7 @@ public class BPTree {
             for (int a = 0; a < bookAll.get(i).getCategories().size();a++) {
                 StringBuilder builder = new StringBuilder(text);
                 for (int j = 0;  j < text.length()/2 || text.length() == 1; j++) {
-                    if (bookAll.get(i).getCategories().get(a).contains(builder)) {
+                    if (bookAll.get(i).getCategories().get(a).toLowerCase(Locale.US).contains(builder.toString().toLowerCase(Locale.US))) {
                         if (similar.contains(bookAll.get(i).toString()))
                         {
                             continue;

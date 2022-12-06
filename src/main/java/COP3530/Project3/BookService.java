@@ -51,12 +51,26 @@ public class BookService {
         return ms.getSorted();
     }
     
-    public List<Book> findBooksByDesc(String search) {
-        return hashBooks.books.values().stream().filter(c->c.getDesc().toLowerCase(Locale.US).contains(search.toLowerCase(Locale.US))).collect(Collectors.toList());
+    public List<Book> findBooksByDesc(String search, String struc, String type, boolean order) {
+        List<Book> results;
+        if (struc.equals("bTree"))
+            results = bTreeBooks.books.traverseDesc(search);
+        else
+            results = hashBooks.books.values().stream().filter(c->c.getDesc().toLowerCase(Locale.US).contains(search.toLowerCase(Locale.US))).collect(Collectors.toList());
+        MergeSort ms = new MergeSort(results, type, order);
+        ms.sort(0, results.size() - 1);
+        return ms.getSorted();
     }
     
-    public List<Book> findBooksByAuthor(String search) {
-        return hashBooks.books.values().stream().filter(c->authorSearchHelper(c, search)).collect(Collectors.toList());
+    public List<Book> findBooksByAuthor(String search, String struc, String type, boolean order) {
+        List<Book> results;
+        if (struc.equals("bTree"))
+            results = bTreeBooks.books.traverseAuthor(search);
+        else
+            results = hashBooks.books.values().stream().filter(c->authorSearchHelper(c, search)).collect(Collectors.toList());
+        MergeSort ms = new MergeSort(results, type, order);
+        ms.sort(0, results.size() - 1);
+        return ms.getSorted();
     }
     
     private boolean authorSearchHelper(Book book, String search) {

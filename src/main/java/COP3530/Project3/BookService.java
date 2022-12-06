@@ -27,7 +27,6 @@ public class BookService {
         Book b = new Book();
         b.setTitle("Title"+test);
         b.setDesc("Desc"+test);
-        b.setPrice(10.22);
         b.setRatingsCount(44.4);
         book.add(b);
     }

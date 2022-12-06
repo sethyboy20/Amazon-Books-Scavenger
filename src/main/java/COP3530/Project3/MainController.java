@@ -31,13 +31,14 @@ public class MainController {
     }
 
     @GetMapping("/search")
-    public String searchResults(Model model, @RequestParam Optional<String> search, @RequestParam Optional<Integer> index) {
+    public String searchResults(Model model, @RequestParam Optional<String> search, @RequestParam Optional<String> sortType, @RequestParam Optional<String> struc,
+                                @RequestParam Optional<Boolean> sortOrder, @RequestParam Optional<Integer> index) {
         int indexInt = index.orElse(0);
         if (search.isPresent()) {
             addMemoryUsage(model);
             long origTime = System.currentTimeMillis();
             model.addAttribute("isSearching", true);
-            var resultsFound = bookService.findBooksByTitle(search.get());
+            var resultsFound = bookService.findBooksByTitle(search.get(), struc.get(), sortType.get(), sortOrder.get());
             var booksByTitle = resultsFound.stream().skip(indexInt * resultsPerPage).limit(resultsPerPage).toList();
             model.addAttribute("amountResults", 0);
             long curTime = System.currentTimeMillis();

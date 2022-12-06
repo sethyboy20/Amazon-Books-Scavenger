@@ -1,3 +1,4 @@
+package COP3530.Project3;
 import java.util.Map.Entry;
 import java.util.*;
 
@@ -335,7 +336,7 @@ public class BPTree {
         return nodeBook;
     }
 
-    public void searchTitle(String text) {
+    public boolean searchTitle(String text) {
         if (text != null)
         {
             if (rootNode != null)
@@ -346,12 +347,13 @@ public class BPTree {
                     String k = correctL.titleK.get(i);
                     if (k.compareTo(text) == 0) {
                         System.out.println(correctL.bookData.get(i).toString());
-                        return;
+                        return true;
                     }
                 }
             }
         }
         System.out.println("NOT FOUND");
+        return false;
     }
 
     public void traverse()
@@ -364,15 +366,17 @@ public class BPTree {
     }
 
 
-    public void traverseTitle(String text)
+    public ArrayList<Book> traverseTitle(String text)
     {
         int m = 1;
         ArrayList<String> similar = new ArrayList<>();
+        ArrayList<Book> results = new ArrayList<>();
         for (int i = 0; i < bookAll.size() && m <= 200; i++)
         {
             if (text.compareTo(bookAll.get(i).getTitle()) == 0)
             {
                 similar.add(0,bookAll.get(i).toString());
+                results.add(bookAll.get(i));
                 m++;
                 continue;
             }
@@ -384,6 +388,7 @@ public class BPTree {
                         continue;
                     }
                     similar.add(similar.size(), bookAll.get(i).toString());
+                    results.add(bookAll.get(i));
                     m++;
                     builder.deleteCharAt(builder.length()-1);
                 }
@@ -395,18 +400,22 @@ public class BPTree {
             System.out.print("Book Num: " + i + " ");
             System.out.println(similar.get(i));
         }
+        
+        return results;
     }
 
 
-    public void traverseDesc(String text)
+    public ArrayList<Book> traverseDesc(String text)
     {
         int m = 1;
         ArrayList<String> similar = new ArrayList<>();
+        ArrayList<Book> results = new ArrayList<>();
         for (int i = 0; i < bookAll.size() && m <= 200; i++)
         {
             if (text.compareTo(bookAll.get(i).getDesc()) == 0)
             {
                 similar.add(0,bookAll.get(i).toString());
+                results.add(bookAll.get(i));
                 m++;
                 continue;
             }
@@ -418,6 +427,7 @@ public class BPTree {
                         continue;
                     }
                     similar.add(similar.size(), bookAll.get(i).toString());
+                    results.add(bookAll.get(i));
                     m++;
                     builder.deleteCharAt(builder.length()-1);
                 }
@@ -429,17 +439,20 @@ public class BPTree {
             System.out.print("Book Num: " + i + " ");
             System.out.println(similar.get(i));
         }
+        return results;
     }
 
-    public void traversePreview(String text)
+    public ArrayList<Book> traversePreview(String text)
     {
         int m = 1;
         ArrayList<String> similar = new ArrayList<>();
+        ArrayList<Book> results = new ArrayList<>();
         for (int i = 0; i < bookAll.size() && m <= 200; i++)
         {
             if (text.compareTo(bookAll.get(i).getPrevLink()) == 0)
             {
                 similar.add(0,bookAll.get(i).toString());
+                results.add(bookAll.get(i));
                 m++;
                 continue;
             }
@@ -451,6 +464,7 @@ public class BPTree {
                         continue;
                     }
                     similar.add(similar.size(), bookAll.get(i).toString());
+                    results.add(bookAll.get(i));
                     m++;
                     builder.deleteCharAt(builder.length()-1);
                 }
@@ -462,17 +476,20 @@ public class BPTree {
             System.out.print("Book Num: " + i + " ");
             System.out.println(similar.get(i));
         }
+        return results;
     }
 
-    public void traverseAuthor(String text)
+    public ArrayList<Book> traverseAuthor(String text)
     {
         int m = 1;
         ArrayList<String> similar = new ArrayList<>();
+        ArrayList<Book> results = new ArrayList<>();
         for (int i = 0; i < bookAll.size() && m <= 200; i++)
         {
             for (int a = 0; a < bookAll.get(i).getAuthors().size();a++) {
                 if (text.compareTo(bookAll.get(i).getAuthors().get(a)) == 0) {
                     similar.add(0, bookAll.get(i).toString());
+                    results.add(bookAll.get(i));
                     m++;
                     continue;
                 }
@@ -486,6 +503,7 @@ public class BPTree {
                             continue;
                         }
                         similar.add(similar.size(), bookAll.get(i).toString());
+                        results.add(bookAll.get(i));
                         m++;
                         builder.deleteCharAt(builder.length()-1);
                     }
@@ -498,17 +516,21 @@ public class BPTree {
             System.out.print("Book Num: " + i + " ");
             System.out.println(similar.get(i));
         }
+        
+        return results;
     }
 
-    public void traverseImage(String text)
+    public ArrayList<Book> traverseImage(String text)
     {
         int m = 1;
         ArrayList<String> similar = new ArrayList<>();
+        ArrayList<Book> results = new ArrayList<>();
         for (int i = 0; i < bookAll.size() && m <= 200; i++)
         {
             if (text.compareTo(bookAll.get(i).getImage()) == 0)
             {
                 similar.add(0,bookAll.get(i).toString());
+                results.add(bookAll.get(i));
                 m++;
                 continue;
             }
@@ -520,6 +542,7 @@ public class BPTree {
                         continue;
                     }
                     similar.add(similar.size(), bookAll.get(i).toString());
+                    results.add(bookAll.get(i));
                     m++;
                     builder.deleteCharAt(builder.length()-1);
                 }
@@ -531,17 +554,20 @@ public class BPTree {
             System.out.print("Book Num: " + i + " ");
             System.out.println(similar.get(i));
         }
+        return results;
     }
 
-    public void traversePublished(String text)
+    public ArrayList<Book> traversePublished(String text)
     {
         int m = 1;
         ArrayList<String> similar = new ArrayList<>();
+        ArrayList<Book> results = new ArrayList<>();
         for (int i = 0; i < bookAll.size() && m <= 200; i++)
         {
             if (text.compareTo(bookAll.get(i).getPubDate()) == 0)
             {
                 similar.add(0,bookAll.get(i).toString());
+                results.add(bookAll.get(i));
                 m++;
                 continue;
             }
@@ -553,6 +579,7 @@ public class BPTree {
                         continue;
                     }
                     similar.add(similar.size(), bookAll.get(i).toString());
+                    results.add(bookAll.get(i));
                     m++;
                     builder.deleteCharAt(builder.length()-1);
                 }
@@ -564,17 +591,20 @@ public class BPTree {
             System.out.print("Book Num: " + i + " ");
             System.out.println(similar.get(i));
         }
+        return results;
     }
 
-    public void traversePub(String text)
+    public ArrayList<Book> traversePub(String text)
     {
         int m = 1;
         ArrayList<String> similar = new ArrayList<>();
+        ArrayList<Book> results = new ArrayList<>();
         for (int i = 0; i < bookAll.size() && m <= 200; i++)
         {
             if (text.compareTo(bookAll.get(i).getPub()) == 0)
             {
                 similar.add(0,bookAll.get(i).toString());
+                results.add(bookAll.get(i));
                 m++;
                 continue;
             }
@@ -586,6 +616,7 @@ public class BPTree {
                         continue;
                     }
                     similar.add(similar.size(), bookAll.get(i).toString());
+                    results.add(bookAll.get(i));
                     m++;
                     builder.deleteCharAt(builder.length()-1);
                 }
@@ -597,17 +628,20 @@ public class BPTree {
             System.out.print("Book Num: " + i + " ");
             System.out.println(similar.get(i));
         }
+        return results;
     }
 
-    public void traverseInfo(String text)
+    public ArrayList<Book> traverseInfo(String text)
     {
         int m = 1;
         ArrayList<String> similar = new ArrayList<>();
+        ArrayList<Book> results = new ArrayList<>();
         for (int i = 0; i < bookAll.size() && m <= 200; i++)
         {
             if (text.compareTo(bookAll.get(i).getInfoLink()) == 0)
             {
                 similar.add(0,bookAll.get(i).toString());
+                results.add(bookAll.get(i));
                 m++;
                 continue;
             }
@@ -619,6 +653,7 @@ public class BPTree {
                         continue;
                     }
                     similar.add(similar.size(), bookAll.get(i).toString());
+                    results.add(bookAll.get(i));
                     m++;
                     builder.deleteCharAt(builder.length()-1);
                 }
@@ -630,17 +665,20 @@ public class BPTree {
             System.out.print("Book Num: " + i + " ");
             System.out.println(similar.get(i));
         }
+        return results;
     }
 
-    public void traverseCat(String text)
+    public ArrayList<Book> traverseCat(String text)
     {
         int m = 1;
         ArrayList<String> similar = new ArrayList<>();
+        ArrayList<Book> results = new ArrayList<>();
         for (int i = 0; i < bookAll.size() && m <= 200; i++)
         {
             for (int a = 0; a < bookAll.get(i).getCategories().size();a++) {
                 if (text.compareTo(bookAll.get(i).getCategories().get(a)) == 0) {
                     similar.add(0, bookAll.get(i).toString());
+                    results.add(bookAll.get(i));
                     m++;
                     continue;
                 }
@@ -654,6 +692,7 @@ public class BPTree {
                             continue;
                         }
                         similar.add(similar.size(), bookAll.get(i).toString());
+                        results.add(bookAll.get(i));
                         m++;
                         builder.deleteCharAt(builder.length()-1);
                     }
@@ -666,18 +705,21 @@ public class BPTree {
             System.out.print("Book Num: " + i + " ");
             System.out.println(similar.get(i));
         }
+        return results;
     }
 
 
-    public void traverseRatingC(double text)
+    public ArrayList<Book> traverseRatingC(double text)
     {
         int m = 1;
         ArrayList<String> similar = new ArrayList<>();
+        ArrayList<Book> results = new ArrayList<>();
         for (int i = 0; i < bookAll.size() && m <= 200; i++)
         {
             if (text == bookAll.get(i).getRatingsCount())
             {
                 similar.add(0,bookAll.get(i).toString());
+                results.add(bookAll.get(i));
                 m++;
                 continue;
             }
@@ -688,11 +730,13 @@ public class BPTree {
             System.out.print("Book Num: " + i + " ");
             System.out.println(similar.get(i));
         }
+        
+        return results;
     }
 
 
 
-    public static void main(String[] args) {
+    /*public static void main(String[] args) {
         int i;
         int n;
         String t;
@@ -714,7 +758,7 @@ public class BPTree {
             t = in.next();
             b.searchTitle(t);
         }
-    }
+    }*/
 
 
 }

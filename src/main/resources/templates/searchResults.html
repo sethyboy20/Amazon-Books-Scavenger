@@ -7,6 +7,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta charset="UTF-8">
+    <script src="jquery-1.9.1.js"></script>
     <title>Search results</title>
 </head>
 <body>
@@ -20,6 +21,22 @@
             <button>Search</button>
         </form>
     </div>
+    <form>
+        <input type="radio" id="bTree" name="struc" value="bTree">
+        <label for="bTree">B+ Tree</label><br>
+        <input type="radio" id="hashMap" name="struc" value="hash">
+        <label for="hashMap">Hash Map</label><br>
+    </form>
+    <form>
+        <input type="radio" id="asc" name="sortOrder" value="ascending">
+        <label for="asc">Ascending</label><br>
+        <input type="radio" id="des" name="sortOrder" value="!ascending">
+        <label for="des">Descending</label><br>
+    </form>
+    <form>
+        <input type="radio" id="title" name="sortType" value="title">
+        <label for="title">Title</label><br>
+    </form>
     <span th:if="${isSearching}">
         Searching for: <span th:text="${searchFor}"></span><br/>
         About <span th:text="${amountFound}"></span> results (<span th:text="${timeSpent}"></span> ms) <br/>

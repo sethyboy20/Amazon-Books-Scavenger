@@ -7,16 +7,17 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.Locale;
-import java.util.function.Consumer;
 
 @Service
 public class BookService {
     private ArrayList<Book> book;
     Hash hashBooks = new Hash();
+    BTreeParse bTreeBooks = new BTreeParse();
 
     @Autowired
     BookService(ArrayList<Book> book) throws Exception{
         hashBooks.read();
+        bTreeBooks.read();
         /*this.book = book;
         for(int i = 1;i<10_026;i++) {
             addBook(this.book, "Test"+i);
@@ -27,7 +28,6 @@ public class BookService {
         Book b = new Book();
         b.setTitle("Title"+test);
         b.setDesc("Desc"+test);
-        b.setPrice(10.22);
         b.setRatingsCount(44.4);
         book.add(b);
     }
@@ -40,9 +40,15 @@ public class BookService {
         this.book = book;
     }
 
-    public List<Book> findBooksByTitle(String search) {
-        //return book.stream().filter(c->c.getTitle().toLowerCase(Locale.US).contains(search.toLowerCase(Locale.US))).collect(Collectors.toList());
-        return hashBooks.books.values().stream().filter(c->c.getTitle().toLowerCase(Locale.US).contains(search.toLowerCase(Locale.US))).collect(Collectors.toList());
+    public List<Book> findBooksByTitle(String search, String struc, String type, boolean order) {
+        List<Book> results;
+        if (struc.equals("bTree"))
+            results = bTreeBooks.books.traverseTitle(search);
+        else
+            results = hashBooks.books.values().stream().filter(c->c.getTitle().toLowerCase(Locale.US).contains(search.toLowerCase(Locale.US))).collect(Collectors.toList());
+        MergeSort ms = new MergeSort(results, type, order);
+        ms.sort(0, results.size() - 1);
+        return ms.getSorted();
     }
     
     public List<Book> findBooksByDesc(String search) {

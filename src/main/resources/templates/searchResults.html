@@ -19,24 +19,21 @@
                 <input name="search" th:attr="value=${searchFor}"/>
             </label> <br/>
             <button>Search</button>
+
+
+            <input type="radio" id="bTree" name="struc" value="bTree" th:attr="checked=${bPlus}">
+            <label for="bTree">B+ Tree</label><br>
+            <input type="radio" id="hashMap" name="struc" value="hash" th:attr="checked=!${bPlus}">
+            <label for="hashMap">Hash Map</label><br>
+            <input type="radio" id="asc" name="sortOrder" value="ascending" th:attr="checked=${asc}">
+            <label for="asc">Ascending</label><br>
+            <input type="radio" id="des" name="sortOrder" value="!ascending" th:attr="checked=!${asc}">
+            <label for="des">Descending</label><br>
+            <input type="radio" id="title" name="sortType" value="title" th:attr="checked=${searchTitle}">
+            <label for="title">Title</label><br>
+
         </form>
     </div>
-    <form>
-        <input type="radio" id="bTree" name="struc" value="bTree">
-        <label for="bTree">B+ Tree</label><br>
-        <input type="radio" id="hashMap" name="struc" value="hash">
-        <label for="hashMap">Hash Map</label><br>
-    </form>
-    <form>
-        <input type="radio" id="asc" name="sortOrder" value="ascending">
-        <label for="asc">Ascending</label><br>
-        <input type="radio" id="des" name="sortOrder" value="!ascending">
-        <label for="des">Descending</label><br>
-    </form>
-    <form>
-        <input type="radio" id="title" name="sortType" value="title">
-        <label for="title">Title</label><br>
-    </form>
     <span th:if="${isSearching}">
         Searching for: <span th:text="${searchFor}"></span><br/>
         About <span th:text="${amountFound}"></span> results (<span th:text="${timeSpent}"></span> ms) <br/>
@@ -47,7 +44,7 @@
     <div th:each="str,iterStat : ${booksByTitle}">
         <div class="card" style="width: 18rem;">
             <div class="card-body">
-                <h5 class="card-title"> <span th:text="${str.Title}"></span></h5>
+                <h5 class="card-title"><span th:text="${str.Title}"></span></h5>
                 <p class="card-text"><span th:text="${str.desc}"></span></p>
                 <a href="#" class="btn btn-primary">Go somewhere</a>
             </div>

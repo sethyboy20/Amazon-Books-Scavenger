@@ -32,13 +32,14 @@ public class MainController {
 
     @GetMapping("/search")
     public String searchResults(Model model, @RequestParam Optional<String> search, @RequestParam Optional<String> sortType, @RequestParam Optional<String> struc,
-                                @RequestParam Optional<Boolean> sortOrder, @RequestParam Optional<Integer> index) {
+                                @RequestParam Optional<String> sortOrder, @RequestParam Optional<Integer> index) {
         int indexInt = index.orElse(0);
         if (search.isPresent()) {
             addMemoryUsage(model);
             long origTime = System.currentTimeMillis();
+            boolean asc = sortOrder.get().equals("ascending");
             model.addAttribute("isSearching", true);
-            var resultsFound = bookService.findBooksByTitle(search.get(), struc.get(), sortType.get(), sortOrder.get());
+            var resultsFound = bookService.findBooksByTitle(search.get(), struc.get(), sortType.get(), asc);
             var booksByTitle = resultsFound.stream().skip(indexInt * resultsPerPage).limit(resultsPerPage).toList();
             model.addAttribute("amountResults", 0);
             long curTime = System.currentTimeMillis();
@@ -46,6 +47,9 @@ public class MainController {
             model.addAttribute("amountFound", resultsFound.size());
             model.addAttribute("booksByTitle", booksByTitle);
             model.addAttribute("timeSpent", curTime - origTime);
+            model.addAttribute("bPlus", struc.get().equals("bTree"));
+            model.addAttribute("asc", asc);
+            model.addAttribute("searchTitle", sortType.get().equals("title"));
             model.addAttribute("resultsFrom", indexInt * resultsPerPage+1);
             model.addAttribute("resultsTo", (indexInt) * resultsPerPage + booksByTitle.size());
             model.addAttribute("prevIndex", indexInt - 1);
@@ -56,7 +60,11 @@ public class MainController {
             }
 
         } else {
+            model.addAttribute("searchTitle", true);
             model.addAttribute("isSearching", false);
+            model.addAttribute("bPlus", true);
+            model.addAttribute("asc", true);
+
         }
         return "searchResults";
     }

@@ -29,11 +29,16 @@
             <label for="asc">Ascending</label><br>
             <input type="radio" id="des" name="sortOrder" value="!ascending" th:attr="checked=!${asc}">
             <label for="des">Descending</label><br>
-            <input type="radio" id="title" name="sortType" value="title" th:attr="checked=${searchTitle}">
+            <input type="radio" id="title" name="sortType" value="title" th:attr="checked=${searchByTitle}">
             <label for="title">Title</label><br>
+            <input type="radio" id="desc" name="sortType" value="desc" th:attr="checked=${searchByDesc}">
+            <label for="desc">Description</label><br>
+            <input type="radio" id="author" name="sortType" value="author" th:attr="checked=${searchByAuthor}">
+            <label for="author">Author</label><br>
 
         </form>
     </div>
+
     <span th:if="${isSearching}">
         Searching for: <span th:text="${searchFor}"></span><br/>
         About <span th:text="${amountFound}"></span> results (<span th:text="${timeSpent}"></span> ms) <br/>
@@ -41,7 +46,7 @@
         Showing result from <span th:text="${resultsFrom}"></span> to <span th:text="${resultsTo}"></span><br/>
     </span>
     <br/>
-    <div th:each="str,iterStat : ${booksByTitle}">
+    <div th:each="str,iterStat : ${booksFound}">
         <div class="card" style="width: 18rem;">
             <div class="card-body">
                 <h5 class="card-title"><span th:text="${str.Title}"></span></h5>

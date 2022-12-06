@@ -8,8 +8,8 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import java.util.List;
 import java.util.Optional;
-import java.util.stream.Collectors;
 
 
 @Controller
@@ -20,6 +20,12 @@ public class MainController {
     @GetMapping("/")
     public String index(Model model) {
         model.addAttribute("isSearching", false);
+        model.addAttribute("searchByTitle", true);
+        model.addAttribute("searchByDesc", false);
+        model.addAttribute("searchByAuthor", false);
+        model.addAttribute("isSearching", false);
+        model.addAttribute("bPlus", true);
+        model.addAttribute("asc", true);
         return "searchResults";
     }
 
@@ -39,19 +45,31 @@ public class MainController {
             long origTime = System.currentTimeMillis();
             boolean asc = sortOrder.get().equals("ascending");
             model.addAttribute("isSearching", true);
-            var resultsFound = bookService.findBooksByTitle(search.get(), struc.get(), sortType.get(), asc);
-            var booksByTitle = resultsFound.stream().skip(indexInt * resultsPerPage).limit(resultsPerPage).toList();
+            List<Book> resultsFound;
+            if (sortType.get().equals("title")) {
+                resultsFound = bookService.findBooksByTitle(search.get(), struc.get(), sortType.get(), asc);
+            } else if (sortType.get().equals("desc")) {
+                 resultsFound = bookService.findBooksByDesc(search.get(), struc.get(), sortType.get(), asc);
+            } else if (sortType.get().equals("author")) {
+                resultsFound = bookService.findBooksByAuthor(search.get(), struc.get(), sortType.get(), asc);
+            } else {
+                throw new AssertionError("Wrong search by");
+            }
+            var booksFound = resultsFound.stream().skip(indexInt * resultsPerPage).limit(resultsPerPage).toList();
+
             model.addAttribute("amountResults", 0);
             long curTime = System.currentTimeMillis();
             model.addAttribute("searchFor", search.get());
             model.addAttribute("amountFound", resultsFound.size());
-            model.addAttribute("booksByTitle", booksByTitle);
+            model.addAttribute("booksFound", booksFound);
             model.addAttribute("timeSpent", curTime - origTime);
             model.addAttribute("bPlus", struc.get().equals("bTree"));
             model.addAttribute("asc", asc);
-            model.addAttribute("searchTitle", sortType.get().equals("title"));
-            model.addAttribute("resultsFrom", indexInt * resultsPerPage+1);
-            model.addAttribute("resultsTo", (indexInt) * resultsPerPage + booksByTitle.size());
+            model.addAttribute("searchByTitle", sortType.get().equals("title"));
+            model.addAttribute("searchByDesc", sortType.get().equals("desc"));
+            model.addAttribute("searchByAuthor", sortType.get().equals("author"));
+            model.addAttribute("resultsFrom", indexInt * resultsPerPage + 1);
+            model.addAttribute("resultsTo", (indexInt) * resultsPerPage + booksFound.size());
             model.addAttribute("prevIndex", indexInt - 1);
             if (resultsFound.size() > (indexInt + 1) * resultsPerPage) {
                 model.addAttribute("nextIndex", indexInt + 1);
@@ -60,7 +78,9 @@ public class MainController {
             }
 
         } else {
-            model.addAttribute("searchTitle", true);
+            model.addAttribute("searchByTitle", true);
+            model.addAttribute("searchByDesc", false);
+            model.addAttribute("searchByAuthor", false);
             model.addAttribute("isSearching", false);
             model.addAttribute("bPlus", true);
             model.addAttribute("asc", true);

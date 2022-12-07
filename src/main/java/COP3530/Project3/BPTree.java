@@ -10,14 +10,6 @@ public class BPTree {
     public ArrayList<Book> bookAll = new ArrayList<>(); //arraylsit of all books
 
     public class Node {  //Node class, checks for leaks in tree
-
-public class BPTree {
-
-    public static final int max_data = 5;
-    public int sizeBPT = 0;
-    public ArrayList<Book> bookAll = new ArrayList<>();
-
-    public class Node {
         protected boolean is_Leaf;
         protected ArrayList<String> titleK;
 

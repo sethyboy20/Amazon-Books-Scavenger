@@ -10,6 +10,14 @@ public class BPTree {
     public ArrayList<Book> bookAll = new ArrayList<>(); //arraylsit of all books
 
     public class Node {  //Node class, checks for leaks in tree
+
+public class BPTree {
+
+    public static final int max_data = 5;
+    public int sizeBPT = 0;
+    public ArrayList<Book> bookAll = new ArrayList<>();
+
+    public class Node {
         protected boolean is_Leaf;
         protected ArrayList<String> titleK;
 
@@ -43,6 +51,7 @@ public class BPTree {
         {
             titleK = new ArrayList<String>(multTitles);
         }
+
 
         public void setListBook(List<Book> multBooks)  //set book list
         {
@@ -125,6 +134,7 @@ public class BPTree {
             is_Leaf = false;
         }
 
+
         public void internalSort(int pos, Entry<String, Node> childP) //sort children by title
         {
             int n = titleK.size();
@@ -201,7 +211,7 @@ public class BPTree {
                     tempBook1.add(b);
                     add++;
                 }
-
+                
                 while (rem <=k) {  //erase old data so that you can build new leaf
                     int s = firstLeaf.titleK.size()-1;
                     int bS = firstLeaf.bookData.size()-1;
@@ -394,7 +404,6 @@ public class BPTree {
                 }
             }
         }
-
         return results;
     }
 
@@ -427,7 +436,6 @@ public class BPTree {
                 }
             }
         }
-
         return results;
     }
 
@@ -493,7 +501,6 @@ public class BPTree {
                 }
             }
         }
-
         return results;
     }
 
@@ -527,7 +534,6 @@ public class BPTree {
                 }
             }
         }
-
         return results;
     }
 
@@ -559,7 +565,6 @@ public class BPTree {
                 }
             }
         }
-
         return results;
     }
 
@@ -591,7 +596,6 @@ public class BPTree {
                 }
             }
         }
-
         return results;
     }
 
@@ -657,7 +661,6 @@ public class BPTree {
                 }
             }
         }
-
         return results;
     }
 

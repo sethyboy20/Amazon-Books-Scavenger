@@ -109,48 +109,6 @@ public class Hash {
                books.put(title, newBook);
             }
             fr.close();
-
-            /*
-            // Open ratings/reviews file
-            file = new File("Books_rating.csv");
-            fr = new FileReader(file);
-            br = new BufferedReader(fr);
-
-            // Discard first line
-            br.readLine();
-
-            while((str = br.readLine()) != null) {
-                // Get book ID
-                StringBuilder line = new StringBuilder(str);
-                String bookID = parseLine(line);
-                
-                // Set ID with the corresponding book item
-                String title = parseLine(line);
-                if (books.get(title).getBookID().equals(""))
-                    books.get(title).setBookID(bookID);
-                
-                // Read and set book price
-                String tempPrice = parseLine(line);
-                double price = 0; 
-                if (tempPrice.length() != 0)
-                   price = Double.parseDouble(tempPrice);
-                if (books.get(title).getPrice() == 0)
-                    books.get(title).setPrice(price);
-                
-                // Read all review info
-                String userID = parseLine(line);
-                String profileName = parseLine(line);
-                String helpfulness = parseLine(line);
-                double score = Double.parseDouble(parseLine(line));
-                double time = Double.parseDouble(parseLine(line));
-                String summary = parseLine(line);
-                String fullText = parseLine(line);
-                
-                // Add review to book
-                books.get(title).addReview(userID, profileName, helpfulness, score, time,
-                                        summary, fullText);
-            }
-            fr.close();*/
          }
          catch (Exception e) { 
              System.out.println("File read error"); 

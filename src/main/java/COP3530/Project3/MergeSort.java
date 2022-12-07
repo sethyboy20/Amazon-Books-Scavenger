@@ -48,7 +48,6 @@ public class MergeSort {
             }
         }       
         
-        // Either of below while loop will execute
         while (left <= mid){
             merged.add(input.get(left));
             left++;
@@ -61,7 +60,8 @@ public class MergeSort {
         
         int i = 0;
         int j = start;
-        //Setting sorted array to original one
+        
+        // Set sorted array
         while(i < merged.size()){
             input.set(j, merged.get(i++));
             j++;

@@ -22,20 +22,10 @@ public class MergeSort {
     }
     
     boolean compare(Book left, Book right) {
-        if (type.equals("title") && ascending)
+        if (ascending)
             return (left.getTitle().compareToIgnoreCase(right.getTitle()) <= 0);
-        if (type.equals("title") && !ascending)
+        else
             return (left.getTitle().compareToIgnoreCase(right.getTitle()) >= 0);
-        if (type.equals("desc") && ascending)
-            return (left.getDesc().compareToIgnoreCase(right.getDesc()) <= 0);
-        if (type.equals("desc") && !ascending)
-            return (left.getDesc().compareToIgnoreCase(right.getDesc()) >= 0);
-        if (type.equals("ratings") && ascending)
-            return (left.getRatingsCount() <= right.getRatingsCount());
-        if (type.equals("ratings") && !ascending)
-            return (left.getRatingsCount() >= right.getRatingsCount());
-        
-        return false;
     }
     
     void merge(int start, int mid, int end)

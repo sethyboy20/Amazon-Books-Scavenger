@@ -6,3 +6,6 @@ Search results are sorted using a mergesort algorithm. Books can be loaded in ei
 Co-developed with David Dexter (OrganomagnesiumHalide) and Sufia Rashid (SufiaRashid).
 
 I was primarily responsible for implementing the backend functionality of loading books into a hash map (Hash.java) and the mergesort algorithm for sorting search results (MergeSort.java). I also assisted with functionality for filtering books by certain parameters (BookService.java).
+
+## Usage
+Run ```make``` to start the server (must have JDK 17 installed), then navigate to http://localhost:8080/.
